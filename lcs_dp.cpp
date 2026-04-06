@@ -58,6 +58,24 @@ int lcsTab(string str1, string str2){
             }
         }
     }
+    
+    // traceback
+    int i = n, j = m;
+    string result = "";
+    while(i>0 && j>0){
+        if(str1[i-1]==str2[j-1]){
+            result+=str1[i-1];
+            i--; j--;
+        }
+        else{
+            if(dp[i-1][j]>dp[i][j-1]){
+                i--;
+            }else j--;
+        }
+    }
+    reverse(result.begin(), result.end());
+    cout << result << endl;
+    
     return dp[n][m];
     
 }
